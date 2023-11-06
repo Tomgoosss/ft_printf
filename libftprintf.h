@@ -6,5 +6,7 @@
 # include <stdarg.h>
 
 int ft_printf(const char *var, ...);
+int ft_hexpointer(long long unsigned i, int firstcall);
+int	pfitoa(int n);
 
 #endif

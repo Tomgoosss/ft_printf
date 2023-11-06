@@ -6,7 +6,7 @@
 /*   By: tgoossen <tgoossen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:40:02 by tgoossen          #+#    #+#             */
-/*   Updated: 2023/11/02 15:38:11 by tgoossen         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:54:17 by tgoossen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,45 +15,27 @@
 int numpick(const char *var, va_list args)
 {
     int i;
-    char c;
     const char *str;
-	void *strr
     
     i = 0;
 	while (var[i])
 	{
         if (var[i] == 'c')
         {
-            c = va_arg(args, int);
-            return(write(1, &c, 1));
+			ft_putchar_fd(va_arg(args, int), 1);
         }
         else if (var[i] == 's')
         {
             str = va_arg(args, const char *);
-           	return(write(1, str, strlen(str)));
+           	return(write(1, str, ft_strlen(str)));
         }
 		else if (var[i] == 'p')
-		{
-			return (ft_printp(va_arg(args, void *)));
-		}
+			return (ft_hexpointer(va_arg(args, long long unsigned), 1));
+		else if (var[i] == 'd' || var[i] == 'i')
+			return(pfitoa(va_arg(args, int)));
 		i++;
 	}
     return(i);
-}
-
-int hexpointer(void *this)
-{
-	unsigned long long	num;
-	int 				i;
-	char				count;
-	
-	count = 0;
-	i = 0;
-	num = (unsigned long long)this;
-	while (num >= 16)
-	{
-		count += num / 16;
-	}
 }
 
 int ft_printf(const char *var, ...)
@@ -80,9 +62,12 @@ int ft_printf(const char *var, ...)
 
 int main()
 {
-    char *test = "p";
+    // char *test = "p";
+	int test = 1234;
 
-    ft_printf("this is my printf = %p\n", test);
-    printf("this is the real function = %x\n", test);
+
+    ft_printf("this is my printf = %d\n", test);
+    printf("this is the real function = %d\n", test);
     
 }
+

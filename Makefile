@@ -2,7 +2,7 @@ sourcefiles = 	ft_printf.c
 
 objects =		$(sourcefiles:.c=.o)
 
-NAME =			libftprintf.a
+NAME =			libftprintf.a ft_hexpointer.c pfitoa.c
 
 all:			$(NAME)
 
