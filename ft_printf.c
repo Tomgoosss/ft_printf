@@ -6,11 +6,11 @@
 /*   By: tgoossen <tgoossen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:40:02 by tgoossen          #+#    #+#             */
-/*   Updated: 2023/11/06 11:54:17 by tgoossen         ###   ########.fr       */
+/*   Updated: 2023/11/07 19:29:55 by tgoossen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int numpick(const char *var, va_list args)
 {
@@ -32,42 +32,69 @@ int numpick(const char *var, va_list args)
 		else if (var[i] == 'p')
 			return (ft_hexpointer(va_arg(args, long long unsigned), 1));
 		else if (var[i] == 'd' || var[i] == 'i')
-			return(pfitoa(va_arg(args, int)));
-		i++;
+			return(printint(va_arg(args, int)));
+		else if (var[i] == 'u')
+			return(printunsigned(va_arg(args, unsigned int)));
+		else if (var[i] == 'x')
+			return(ft_hexpointerlower(va_arg(args, unsigned int)));
+		else if (var[i] == 'X')
+			return(ft_hexpointerupper(va_arg(args, unsigned int)));
+		else if (var[i] == '%')
+			ft_putchar_fd('%', 1);
+		i++;	
 	}
     return(i);
 }
+int valid(char s) {
+	int i;
+	i = 0;
+	char *c = "cspdiuxX%";
 
-int ft_printf(const char *var, ...)
+	while (c[i]) {
+		if (c[i] == s) return 1;
+		i++;
+	}
+	return 0;
+}
+
+int ft_printf(const char *format, ...)
 {
     va_list args;
     int count;
-    
     int i;
 
-    i  = 0;
-	count = 0;
-    va_start(args, var);
-    while (var[i])
+    i = 0;
+    count = 0;
+    va_start(args, format);
+    while (format[i])
     {
-        if ( var[i] != '%' && var[i])
-        	count += write(1, &var[i], 1);
+        if (format[i] == '%' && format[i + 1] == '%')
+        {
+            count += write(1, &format[i], 1);
+            i += 2;
+        }
+        else if (format[i] == '%' && valid(format[i + 1]))
+        {
+            count += numpick(&format[i + 1], args);
+            i += 2;
+        }
         else
-            count += numpick(&var[i++], args);
-        i++;
+        {
+            count += write(1, &format[i], 1);
+            i++; 
+        }
     }
     va_end(args);
-    return (count); 
+    return (count);
 }
 
-int main()
-{
-    // char *test = "p";
-	int test = 1234;
+// int main()
+// {
+//     // char *test = "kjsadsad";
+// 	int test =  -3333;
 
 
-    ft_printf("this is my printf = %d\n", test);
-    printf("this is the real function = %d\n", test);
+//     ft_printf("this is my printf = %u\n", test);
+//     printf("this is the real function = %u\n", test);
     
-}
-
+// }

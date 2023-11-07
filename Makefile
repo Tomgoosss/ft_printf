@@ -1,12 +1,13 @@
-sourcefiles = 	ft_printf.c
+sourcefiles = 	ft_printf.c ft_hexpointer.c printint.c printunsigned.c ft_putchar_fd.c \
+				ft_strlen.c
 
 objects =		$(sourcefiles:.c=.o)
 
-NAME =			libftprintf.a ft_hexpointer.c pfitoa.c
+NAME =			libftprintf.a
 
 all:			$(NAME)
 
-$(NAME):		$(objects)
+$(NAME): $(objects)
 	ar rcs libftprintf.a $(objects)
 
 %.o: %.c
@@ -17,5 +18,6 @@ clean:
 
 fclean:
 	rm -f $(objects) $(NAME)
+
 
 re: 			fclean all
