@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   putstr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgoossen <tgoossen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 13:02:44 by tgoossen          #+#    #+#             */
-/*   Updated: 2023/11/08 09:57:43 by tgoossen         ###   ########.fr       */
+/*   Created: 2023/11/08 08:34:25 by tgoossen          #+#    #+#             */
+/*   Updated: 2023/11/08 11:24:30 by tgoossen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar_fd(char c, int fd)
+int	putstr(const char *c)
 {
-	write(fd, &c, 1);
-	return (1);
+	int	i;
+
+	i = 0;
+	if (c == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	while (c[i])
+	{
+		write(1, &c[i], 1);
+		i++;
+	}
+	return (i);
 }
