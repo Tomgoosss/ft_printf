@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printint.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgoossen <tgoossen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: knockla <knockla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:57:34 by tgoossen          #+#    #+#             */
-/*   Updated: 2023/11/08 13:13:40 by tgoossen         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:30:07 by knockla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,18 @@ int	printint(long nb)
 	str = malloc((len) * sizeof(char));
 	if (nb < 0)
 	{
-		ft_putchar_fd('-', 1);
+		ft_putchar('-');
 		nb = -nb;
 	}
 	if (nb == 0)
-		ft_putchar_fd('0', 1);
+		ft_putchar('0');
 	else
 	{
 		str[len] = '\0';
 		fillstr(str, len, nb);
 	}
 	while (str[i])
-		ft_putchar_fd(str[i++], 1);
+		ft_putchar(str[i++]);
 	free (str);
 	return (len);
 }

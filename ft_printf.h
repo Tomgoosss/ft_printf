@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgoossen <tgoossen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: knockla <knockla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:38:10 by tgoossen          #+#    #+#             */
-/*   Updated: 2023/11/08 09:57:56 by tgoossen         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:27:12 by knockla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		printint(long nb);
 int		printunsigned(long nb);
 int		ft_hexpointerlower(long long unsigned i);
 int		ft_hexpointerupper(long long unsigned i);
-int		ft_putchar_fd(char c, int fd);
+int		ft_putchar(char c);
 int		ft_strlen(const char *s);
 int		putstr(const char *c);
 

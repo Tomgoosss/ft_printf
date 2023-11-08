@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgoossen <tgoossen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: knockla <knockla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:40:02 by tgoossen          #+#    #+#             */
-/*   Updated: 2023/11/08 13:27:50 by tgoossen         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:33:18 by knockla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int	numpick(const char *var, va_list args)
 {
 	if (*var == 'c')
-		return (ft_putchar_fd(va_arg(args, int), 1));
+		return (ft_putchar(va_arg(args, int)));
 	else if (*var == 's')
 		return (putstr(va_arg(args, const char *)));
 	else if (*var == 'p')
-		return (ft_hexpointer(va_arg(args, long long unsigned), 1));
+		return (printp(va_arg(args, long long unsigned)));
 	else if (*var == 'd' || *var == 'i')
 		return (printint(va_arg(args, int)));
 	else if (*var == 'u')
@@ -29,7 +29,7 @@ int	numpick(const char *var, va_list args)
 	else if (*var == 'X')
 		return (ft_hexpointerupper(va_arg(args, unsigned int)));
 	else if (*var == '%')
-		ft_putchar_fd('%', 1);
+		ft_putchar('%');
 	return (1);
 }
 

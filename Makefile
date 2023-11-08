@@ -1,4 +1,4 @@
-sourcefiles = 	ft_printf.c ft_hexpointer.c printint.c printunsigned.c ft_putchar_fd.c \
+sourcefiles = 	ft_printf.c ft_hexpointer.c printint.c printunsigned.c ft_putchar.c \
 				ft_strlen.c putstr.c
 
 objects =		$(sourcefiles:.c=.o)

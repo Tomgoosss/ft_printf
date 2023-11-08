@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printunsigned.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgoossen <tgoossen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: knockla <knockla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 09:13:07 by tgoossen          #+#    #+#             */
-/*   Updated: 2023/11/08 13:27:05 by tgoossen         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:30:28 by knockla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ int	printunsigned(long nb)
 		nb += INT_MAX;
 	}
 	if (nb == 0)
-		ft_putchar_fd('0', 1);
+		ft_putchar('0');
 	else
 	{
 		str[len] = '\0';
 		fillstr(str, len, nb);
 	}
 	while (str[i])
-		ft_putchar_fd(str[i++], 1);
+		ft_putchar(str[i++]);
 	free (str);
 	return (len);
 }
