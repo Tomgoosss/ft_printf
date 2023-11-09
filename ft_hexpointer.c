@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hexpointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: knockla <knockla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgoossen <tgoossen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:38:19 by tgoossen          #+#    #+#             */
-/*   Updated: 2023/11/08 15:28:17 by knockla          ###   ########.fr       */
+/*   Updated: 2023/11/09 16:25:55 by tgoossen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	lengicount(int n)
+void	ft_recursive(long long unsigned i);
+
+static int	lengicount(long long unsigned n)
 {
 	int	len;
 
@@ -21,70 +23,39 @@ static int	lengicount(int n)
 	len = 0;
 	if (n < 0)
 	{
-		n = -n;
+		n += INT_MAX;
 	}
 	while (n)
 	{
-		n /= 10;
+		n /= 16;
 		len++;
 	}
-	return (len - 1);
+	return (len);
 }
 
-int	ft_hexpointer(long long unsigned i, int firstcall)
+int	ft_hexpointer(void *str)
 {
-	int	count;
+	long long unsigned	i;
+	int					count;
 
+	i = (long long unsigned)str;
 	if (i == 0)
 	{
 		write(1, "(nil)", 5);
 		return (5);
 	}
 	count = lengicount(i);
-	if (firstcall)
-	{
-		ft_putchar(48);
-		ft_putchar('x');
-	}
-	if (i >= 16)
-		ft_hexpointer(i / 16, 0);
-	if (i % 16 >= 10)
-		ft_putchar(i % 16 + 87);
-	else if (i % 16 > 0)
-		ft_putchar(i % 16 + 48);
-	else
-		ft_putchar(48);
+	count += write(1, "0x", 2);
+	ft_recursive(i);
 	return (count);
 }
 
-int	ft_hexpointerlower(long long unsigned i)
+void	ft_recursive(long long unsigned i)
 {
-	int	count;
-
-	count = lengicount(i);
 	if (i >= 16)
-		ft_hexpointerlower(i / 16);
+		ft_recursive(i / 16);
 	if (i % 16 >= 10)
 		ft_putchar(i % 16 + 87);
-	else if (i % 16 > 0)
-		ft_putchar(i % 16 + 48);
 	else
-		ft_putchar(48);
-	return (count);
-}
-
-int	ft_hexpointerupper(long long unsigned i)
-{
-	int	count;
-
-	count = lengicount(i);
-	if (i >= 16)
-		ft_hexpointerupper(i / 16);
-	if (i % 16 >= 10)
-		ft_putchar(i % 16 + 55);
-	else if (i % 16 > 0)
-		ft_putchar(i % 16 + 48);
-	else
-		ft_putchar(48);
-	return (count);
+		ft_putchar(i % 16 + '0');
 }

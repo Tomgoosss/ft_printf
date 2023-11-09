@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: knockla <knockla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tgoossen <tgoossen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:40:02 by tgoossen          #+#    #+#             */
-/*   Updated: 2023/11/08 15:33:18 by knockla          ###   ########.fr       */
+/*   Updated: 2023/11/09 16:24:34 by tgoossen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ int	numpick(const char *var, va_list args)
 	else if (*var == 's')
 		return (putstr(va_arg(args, const char *)));
 	else if (*var == 'p')
-		return (printp(va_arg(args, long long unsigned)));
+		return (ft_hexpointer(va_arg(args, void *)));
 	else if (*var == 'd' || *var == 'i')
-		return (printint(va_arg(args, int)));
+		return (allbase(va_arg(args, int), "0123456789"));
 	else if (*var == 'u')
-		return (printunsigned(va_arg(args, unsigned int)));
+		return (allbase(va_arg(args, unsigned int), "0123456789"));
 	else if (*var == 'x')
-		return (ft_hexpointerlower(va_arg(args, unsigned int)));
+		return (allbase(va_arg(args, unsigned int), "0123456789abcdef"));
 	else if (*var == 'X')
-		return (ft_hexpointerupper(va_arg(args, unsigned int)));
+		return (allbase(va_arg(args, unsigned int), "0123456789ABCDEF"));
 	else if (*var == '%')
 		ft_putchar('%');
 	return (1);
@@ -78,9 +78,9 @@ int	ft_printf(const char *format, ...)
 // int main()
 // {
 //     // int test = 'i';
-// 	int test =  -435;
-//     printf("my print return = %i\n", ft_printf("fake = %p\n", test));
-//     printf("real printf return = %i\n", printf("real = %p\n", test));
+// 	int test =  16;
+//     printf("%i\n", ft_printf("%p\n", test));
+//     printf("%i\n", printf("%p\n", test));
 // }
 
 // int	main(void)
@@ -123,8 +123,3 @@ int	ft_printf(const char *format, ...)
 // 	}
 // 	return (0);
 // }
-
-
-
-
-

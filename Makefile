@@ -1,5 +1,5 @@
-sourcefiles = 	ft_printf.c ft_hexpointer.c printint.c printunsigned.c ft_putchar.c \
-				ft_strlen.c putstr.c
+sourcefiles = 	ft_printf.c ft_hexpointer.c ft_putchar.c \
+				ft_strlen.c putstr.c allbase.c
 
 objects =		$(sourcefiles:.c=.o)
 
